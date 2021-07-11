@@ -52,14 +52,16 @@ public class MainController {
     }
 
     @PutMapping()
-    public @ResponseBody ResponseEntity<UserResponseDto> updateUser(@RequestBody User request) throws UserNotFoundException, EmailExistException, EmailBadFormatedException, NotUpdatedUserException {
+    @ApiOperation(nickname = "updateUser", value = "Update a User", notes = "Allow update user information.")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Sucessful", response = ResponseEntity.class) })
+    public @ResponseBody ResponseEntity<UserResponseDto> updateUser(@ApiParam(value = "Request user.") @RequestBody User request) throws UserNotFoundException, EmailExistException, EmailBadFormatedException, NotUpdatedUserException {
         return new ResponseEntity<>(userService.updateUser(request), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(nickname = "deleteUser", value = "Delete a User", notes = "Allow delete user.")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Sucessful", response = ResponseEntity.class) })
-    public @ResponseBody ResponseEntity<String> deleteUser(@ApiParam(value = "Request body.") @PathVariable UUID id) throws NotDeletedUserException, UserNotFoundException {
+    public @ResponseBody ResponseEntity<String> deleteUser(@ApiParam(value = "Request user id.") @PathVariable UUID id) throws NotDeletedUserException, UserNotFoundException {
         if(userService.deleteUser(id)) {
             return new ResponseEntity<>("El usuario fue borrado correctamente", HttpStatus.OK);
         } else {
