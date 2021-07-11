@@ -1,0 +1,1 @@
+INSERT INTO USERS (ID, NAME, EMAIL, PASSWORD, CREATE_AT, MODIFIED_AT, LAST_LOGIN, IS_ACTIVE) VALUES ('f690e86f90be4c93a447be367408f737','Admin', 'admin@admin.cl', '$2a$10$okDXJgYpMZQ2XWNPklLiX.C9c7q/df6sof4Byjzk9TjfoAfKxpBXK', null, null, null, true);
